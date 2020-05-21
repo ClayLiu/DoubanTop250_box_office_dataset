@@ -15,7 +15,7 @@ headers = {
 
 url_search = 'http://www.endata.com.cn/API/GetData.ashx'
 
-def get_moive_box_office(imdb_str : str) -> dict:
+def get_movie_box_office(imdb_str : str) -> dict:
     box_office = {
         'Domestic' : '',
         'International' : '',
@@ -47,8 +47,8 @@ def get_moive_box_office(imdb_str : str) -> dict:
     box_office['English name'] = enname[:-7]
     return box_office
 
-def get_moive_enname(moive_imdb_link : str) -> str:
-    r = requests.get(moive_imdb_link, headers = headers)
+def get_movie_enname(movie_imdb_link : str) -> str:
+    r = requests.get(movie_imdb_link, headers = headers)
     html = r.content.decode('utf-8')
     bs = BeautifulSoup(html, 'lxml')
 
@@ -56,14 +56,14 @@ def get_moive_enname(moive_imdb_link : str) -> str:
     h1 = div.find('h1')
 
     if h1:
-        moive_enname = h1.text
-        moive_enname = moive_enname[:-7]
+        movie_enname = h1.text
+        movie_enname = movie_enname[:-7]
     else:
-        moive_enname = ''
+        movie_enname = ''
     
-    return moive_enname
+    return movie_enname
 
-def get_moive_link_in_page(page : int):
+def get_movie_link_in_page(page : int):
     page_url = 'https://movie.douban.com/top250?start={}&filter='.format((page - 1) * 25)
     r = requests.get(page_url, headers = headers)
     html = r.content.decode('utf-8')
@@ -72,23 +72,23 @@ def get_moive_link_in_page(page : int):
     ol = bs.find('ol', attrs = {'class' : 'grid_view'})
     li = ol.find_all('li')
 
-    moive_link_list = []
-    for single_moive in li:
-        div_hd = single_moive.find('div', attrs = {'class' : 'hd'})
+    movie_link_list = []
+    for single_movie in li:
+        div_hd = single_movie.find('div', attrs = {'class' : 'hd'})
         a = div_hd.find('a')
         href = a['href']
-        moive_link_list.append(href)
+        movie_link_list.append(href)
     
-    return moive_link_list
+    return movie_link_list
 
-def deal_one_moive(moive_link : str) -> dict:
-    r = requests.get(moive_link, headers = headers)
+def deal_one_movie(movie_link : str) -> dict:
+    r = requests.get(movie_link, headers = headers)
     html = r.content.decode('utf-8')
     bs = BeautifulSoup(html, 'lxml')
 
-    moive_name_span = bs.find('span', attrs = {'property' : 'v:itemreviewed'})
-    moive_name = moive_name_span.text if moive_name_span else '获取失败'
-    print(moive_name)
+    movie_name_span = bs.find('span', attrs = {'property' : 'v:itemreviewed'})
+    movie_name = movie_name_span.text if movie_name_span else '获取失败'
+    print(movie_name)
 
     year_span = bs.find('span', attrs = {'class' : 'year'})
     year = year_span.text if year_span else '获取失败'
@@ -152,11 +152,11 @@ def deal_one_moive(moive_link : str) -> dict:
     type_list_str = '/'.join(type_list)
 
     # 超级耗时函数
-    box_office = get_moive_box_office(imdb_str)
+    box_office = get_movie_box_office(imdb_str)
     # print(box_office)
 
     out_dict = {
-        'moive name' : moive_name,
+        'movie name' : movie_name,
         'star' : star,
         'year' : year,
         'length' : length,
@@ -176,7 +176,7 @@ for i in range(5, page_total + 1):
     print(i)
 
     df = pd.DataFrame(columns=[
-        'moive name',
+        'movie name',
         'English name',
         'star',
         'year',
@@ -191,9 +191,9 @@ for i in range(5, page_total + 1):
         'Worldwide',
         'imdb str'
     ])
-    moive_link_list = get_moive_link_in_page(i)
-    for moive_link in moive_link_list:
-        temp_dict = deal_one_moive(moive_link)
+    movie_link_list = get_movie_link_in_page(i)
+    for movie_link in movie_link_list:
+        temp_dict = deal_one_movie(movie_link)
         # print(temp_dict)
         df = df.append(temp_dict, ignore_index = True)
 
