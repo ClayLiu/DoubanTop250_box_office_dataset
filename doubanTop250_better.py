@@ -9,8 +9,7 @@ headers = {
 	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0',
 	'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 	'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
-    'Conection': 'keep-alive',
-    'Cookie' : 'gr_user_id=7a537451-6766-434b-b6a8-a0bc369c42b5; douban-fav-remind=1; trc_cookie_storage=taboola%2520global%253Auser-id%3D7748545e-08c4-413b-9036-9d8e3a6cb01f-tuct17b293e; __gads=ID=7d5255a243a8e94d:T=1562131803:S=ALNI_MZyPlf2Pr_QmOQ9Y5ILFw4JmO6kLA; ll="118281"; bid=uzbNzCNKi20; __utma=30149280.970962883.1589989526.1589989526.1589989526.1; __utmb=30149280.1.10.1589989526; __utmc=30149280; __utmz=30149280.1589989526.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmt=1; dbcl2="217041533:zQyArd2BMeo"; ck=_jkA; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1589989548%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DuzbNzCNKi20%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftop250%25253Fstart%25253D100%252526filter%25253D%22%5D; _pk_id.100001.4cf6=aa3e77e5e70fe62a.1589989548.1.1589989606.1589989548.; _pk_ses.100001.4cf6=*; __utma=223695111.383783329.1589989548.1589989548.1589989548.1; __utmb=223695111.0.10.1589989548; __utmc=223695111; __utmz=223695111.1589989548.1.1.utmcsr=open.weixin.qq.com|utmccn=(referral)|utmcmd=referral|utmcct=/connect/qrconnect; push_noty_num=0; push_doumail_num=0'
+    'Conection': 'keep-alive'
 }
 
 url_search = 'http://www.endata.com.cn/API/GetData.ashx'
